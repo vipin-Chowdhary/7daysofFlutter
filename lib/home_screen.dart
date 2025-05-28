@@ -13,7 +13,7 @@ class HomeScreen extends StatelessWidget {
           child: Text("data afdfjgkh adjfvheuskdavuer  hjd auerualdfrru4 f"),
         ),
       ),
-      drawer: Drawer(),
+      // drawer: Drawer(),
 floatingActionButton: FloatingActionButton(onPressed: (){},),
     );
   }
