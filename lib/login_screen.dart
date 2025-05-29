@@ -11,29 +11,45 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   String name = "";
   bool isChanged = false;
-  final formkey = GlobalKey();
+  final formKey = GlobalKey<FormState>();
+
+  moveToHome() async {
+   if(formKey.currentState!.validate()){
+     setState(() {
+       isChanged = true;
+     });
+     await Future.delayed(Duration(seconds: 1));
+     await Navigator.pushNamed(context, AppRoutes.homeScreen);
+     setState(() {
+       isChanged = false;
+     });
+   }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Material(
       color: Colors.white,
-      child: Column(
-        children: [
-          Image.asset("assets/images/login.png"),
-          SizedBox(height: 20),
-          Text(
-            "Welcome $name",
-            style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
-          ),
-          SizedBox(height: 20),
-          Container(
-            // color: Colors.red,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 32),
-              child: Container(
-                // color: Colors.yellow,
-                child: Form(
-                  key: formkey,
+      child: Form(
+        key: formKey,
+        child: Column(
+          children: [
+            Image.asset("assets/images/login.png"),
+            SizedBox(height: 20),
+            Text(
+              "Welcome $name",
+              style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(height: 20),
+            Container(
+              // color: Colors.red,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                  vertical: 16,
+                  horizontal: 32,
+                ),
+                child: Container(
+                  // color: Colors.yellow,
                   child: Column(
                     children: [
                       TextFormField(
@@ -43,10 +59,10 @@ class _LoginScreenState extends State<LoginScreen> {
                           });
                         },
                         validator: (value) {
-                          // if (value.isEmpty) {
-                          //   return "Username can not be empty";
-                          // }
-                          // return null;
+                          if ( value == null ||value.isEmpty) {
+                            return "Username can not be empty";
+                          }
+                          return null;
                         },
                         decoration: InputDecoration(
                           hintText: "Enter username",
@@ -54,6 +70,14 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ),
                       TextFormField(
+                        validator: (value) {
+                          if ( value == null ||value.isEmpty) {
+                            return "Password can not be empty";
+                          } else if( value.length < 6){
+                            return "Password length should be  atleast 6";
+                          }
+                          return null;
+                        },
                         decoration: InputDecoration(
                           hintText: "Enter Password",
                           labelText: "Password",
@@ -64,19 +88,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         color: Colors.deepPurple,
                         borderRadius: BorderRadius.circular(30),
                         child: InkWell(
-                          onTap: () async {
-                            setState(() {
-                              isChanged = true;
-                            });
-                            await Future.delayed(Duration(seconds: 1));
-                            await Navigator.pushNamed(
-                              context,
-                              AppRoutes.homeScreen,
-                            );
-                            setState(() {
-                              isChanged = false;
-                            });
-                          },
+                          borderRadius: BorderRadius.circular(30),
+                          onTap: moveToHome,
                           child: AnimatedContainer(
                             height: 50,
                             width: isChanged ? 50 : 150,
@@ -98,13 +111,14 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ),
 
+                      // ========
                     ],
                   ),
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
