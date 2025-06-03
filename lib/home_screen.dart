@@ -25,11 +25,24 @@ class HomeScreen extends StatelessWidget {
               trailing: Text(dummyData.price.toString()),
             ),
           ),
-
+          Container(
+            height: 200,
+            width: double.infinity,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: NetworkImage(dummyData.image),
+                fit: BoxFit.cover,
+                colorFilter: ColorFilter.mode(
+                  Colors.red.withOpacity(0.4),
+                  BlendMode.colorDodge,
+                ),
+              ),
+            ),
+          ),
         ],
       ),
       drawer: MyDrawer(),
-      floatingActionButton: FloatingActionButton(onPressed: () {}),
+
     );
   }
 }
