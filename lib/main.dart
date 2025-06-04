@@ -1,5 +1,5 @@
-import 'package:demo_project/home_screen.dart';
-import 'package:demo_project/login_screen.dart';
+import 'package:demo_project/view/home_screen.dart';
+import 'package:demo_project/view/login_screen.dart';
 import 'package:demo_project/models/catalog.dart';
 import 'package:demo_project/utils/app_routes.dart';
 import 'package:flutter/material.dart';
