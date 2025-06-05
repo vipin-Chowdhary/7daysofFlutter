@@ -28,7 +28,9 @@ class DialogScreen extends StatelessWidget {
                     ElevatedButton(onPressed: onPressed, child: Text("Save")),
                     SizedBox(width: 10),
                     ElevatedButton(onPressed: (){
+                      textController!.clear();
                       Navigator.pop(context);
+
                     }, child: Text("Cancel")),
                   ],
                 ),

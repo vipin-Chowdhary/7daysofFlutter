@@ -1,4 +1,5 @@
 import 'package:demo_project/view/dialog_screen.dart';
+import 'package:demo_project/view/navi_bar.dart';
 import 'package:flutter/material.dart';
 
 class SecondScreen extends StatefulWidget {
@@ -10,17 +11,12 @@ class SecondScreen extends StatefulWidget {
 
 class _SecondScreenState extends State<SecondScreen> {
   final controller = TextEditingController();
-  List cardList = [
-    "Vipin ",
-    "Vipin Chowdhary",
-    "Vikas kumar",
-    "Vishal",
-    "Harikrishan",
-  ];
+  List cardList = ["john"];
   void addNameInList() {
     setState(() {
-      if(controller.text.isNotEmpty){
-        cardList.add(controller.text);
+      if (controller.text.isNotEmpty) {
+        // cardList.add(controller.text);
+        cardList.insert(0, controller.text);
       }
 
       controller.clear();
@@ -28,6 +24,7 @@ class _SecondScreenState extends State<SecondScreen> {
 
     Navigator.pop(context);
   }
+
   @override
   void dispose() {
     controller.clear();
@@ -42,7 +39,7 @@ class _SecondScreenState extends State<SecondScreen> {
         backgroundColor: Colors.yellow[400],
         elevation: 3,
         centerTitle: true,
-        title: Text("Second Screen"),
+        title: Text("Add list"),
       ),
       body: ListView.builder(
         itemCount: cardList.length,
@@ -56,33 +53,51 @@ class _SecondScreenState extends State<SecondScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(cardList[index]),
-                  IconButton(padding: EdgeInsets.zero,
-                    onPressed: (){
-                    setState(() {
-                      cardList.removeAt(index);
-                    });
-
+                  IconButton(
+                    padding: EdgeInsets.zero,
+                    onPressed: () {
+                      setState(() {
+                        cardList.removeAt(index);
+                      });
                     },
-                    icon: Icon(Icons.delete),)
+                    icon: Icon(Icons.delete),
+                  ),
                 ],
               ),
             ),
           );
         },
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          showDialog(
-            context: context,
-            builder: (context) {
-              return DialogScreen(
-                textController: controller,
-                onPressed: addNameInList,
+
+      floatingActionButton: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          FloatingActionButton.extended(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => CustomNavigationBar()),
               );
             },
-          );
-        },
-        child: Icon(Icons.add, color: Colors.black),
+            icon: Icon(Icons.arrow_forward),
+            label: Text("Next Page"),
+          ),
+
+          FloatingActionButton(
+            onPressed: () {
+              showDialog(
+                context: context,
+                builder: (context) {
+                  return DialogScreen(
+                    textController: controller,
+                    onPressed: addNameInList,
+                  );
+                },
+              );
+            },
+            child: Icon(Icons.add, color: Colors.black),
+          ),
+        ],
       ),
     );
   }
