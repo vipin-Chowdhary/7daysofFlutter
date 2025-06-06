@@ -1,3 +1,6 @@
+import 'package:demo_project/view/nav_bar/first_nav_bar.dart';
+import 'package:demo_project/view/nav_bar/second_nav_bar.dart';
+import 'package:demo_project/view/second_screen.dart';
 import 'package:flutter/material.dart';
 
 class CustomNavigationBar extends StatefulWidget {
@@ -10,9 +13,9 @@ class CustomNavigationBar extends StatefulWidget {
 class _CustomNavigationBarState extends State<CustomNavigationBar> {
   int selectedIndex = 0;
   List screenList = [
-    Center(child: Text("First Screen ")),
-    Center(child: Text("Second Screen")),
-    Center(child: Text("Third Screen ")),
+    FirstScreenNavbar(),
+   SecondScreenNaviBar(),
+
   ];
   @override
   Widget build(BuildContext context) {
@@ -24,7 +27,24 @@ class _CustomNavigationBarState extends State<CustomNavigationBar> {
         height: 60,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [Icon(Icons.home), Icon(Icons.account_circle)],
+          children: [
+            GestureDetector(
+              onTap: () {
+                setState(() {
+                  selectedIndex = 0;
+                });
+              },
+              child: Icon(Icons.home),
+            ),
+            GestureDetector(
+              onTap: () {
+                setState(() {
+                  selectedIndex = 1;
+                });
+              },
+              child: Icon(Icons.account_circle),
+            ),
+          ],
         ),
       ),
 

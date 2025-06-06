@@ -1,5 +1,5 @@
 import 'package:demo_project/view/dialog_screen.dart';
-import 'package:demo_project/view/navi_bar.dart';
+import 'package:demo_project/view/nav_bar/navi_bar.dart';
 import 'package:flutter/material.dart';
 
 class SecondScreen extends StatefulWidget {
@@ -35,6 +35,7 @@ class _SecondScreenState extends State<SecondScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
       appBar: AppBar(
         backgroundColor: Colors.yellow[400],
         elevation: 3,
