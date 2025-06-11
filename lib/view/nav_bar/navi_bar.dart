@@ -1,4 +1,5 @@
 import 'package:demo_project/view/nav_bar/first_nav_bar.dart';
+import 'package:demo_project/view/nav_bar/searching_bar.dart';
 import 'package:demo_project/view/nav_bar/second_nav_bar.dart';
 import 'package:demo_project/view/second_screen.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +16,7 @@ class _CustomNavigationBarState extends State<CustomNavigationBar> {
   List screenList = [
     FirstScreenNavbar(),
    SecondScreenNaviBar(),
+    SearchingBar()
 
   ];
   @override
@@ -43,6 +45,14 @@ class _CustomNavigationBarState extends State<CustomNavigationBar> {
                 });
               },
               child: Icon(Icons.account_circle),
+            ),
+            GestureDetector(
+              onTap: () {
+                setState(() {
+                  selectedIndex = 2;
+                });
+              },
+              child: Icon(Icons.search),
             ),
           ],
         ),
