@@ -38,6 +38,7 @@ class _SearchingBarState extends State<SearchingBar> {
      print(" newList tems = $newList");
     print(" nameList tems = $nameList");
     return Scaffold(
+
         body: SafeArea(
           child: Column(
             children: [
