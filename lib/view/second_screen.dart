@@ -1,6 +1,8 @@
+import 'package:demo_project/utils/app_routes_constant.dart';
 import 'package:demo_project/view/dialog_screen.dart';
 import 'package:demo_project/view/nav_bar/navi_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class SecondScreen extends StatefulWidget {
   const SecondScreen({super.key});
@@ -75,10 +77,7 @@ class _SecondScreenState extends State<SecondScreen> {
         children: [
           FloatingActionButton.extended(
             onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => CustomNavigationBar()),
-              );
+            Get.toNamed(AppRoutes.customNavigationBar);
             },
             icon: Icon(Icons.arrow_forward),
             label: Text("Next Page"),

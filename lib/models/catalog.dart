@@ -20,3 +20,9 @@ class Item {
   final String image;
   Item({ required this.id,required this.name,required this.desc,required this.price, required this.image});
 }
+
+class ClickButtonModel {
+  final int id;
+  bool isModelTrue;
+  ClickButtonModel({ required this.id,required this.isModelTrue,});
+}

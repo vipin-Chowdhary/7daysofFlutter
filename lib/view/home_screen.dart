@@ -2,9 +2,11 @@ import 'dart:ui';
 import 'dart:ui' as ui;
 
 import 'package:demo_project/models/catalog.dart';
+import 'package:demo_project/utils/app_routes_constant.dart';
 import 'package:demo_project/utils/widgets/drawer.dart';
 import 'package:demo_project/view/second_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -71,7 +73,8 @@ class HomeScreen extends StatelessWidget {
           ),
           SizedBox(height: 20),
           ElevatedButton(onPressed: (){
-            Navigator.push(context, MaterialPageRoute(builder: (context) => SecondScreen(),));
+          // Get.to(SecondScreen());
+            Get.toNamed(AppRoutes.secondScreen);
           }, child: Text("next"))
         ],
       ),

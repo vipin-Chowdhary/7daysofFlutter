@@ -9,7 +9,7 @@ class SecondScreenNaviBar extends StatefulWidget {
 
 class _SecondScreenNaviBarState extends State<SecondScreenNaviBar> {
   SelectedItem? item;
-  final listName = <SelectedItem>[
+  final List<SelectedItem> listName = <SelectedItem>[
     SelectedItem(name: "vipin", isSelected: false),
     SelectedItem(name: "vikas", isSelected: false),
     SelectedItem(name: "hari", isSelected: false),

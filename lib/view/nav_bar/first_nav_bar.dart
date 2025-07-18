@@ -1,4 +1,9 @@
+import 'package:demo_project/utils/app_routes_constant.dart';
+import 'package:demo_project/view/demo_1.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import '../../common_widgets/snackbar.dart';
 
 class FirstScreenNavbar extends StatelessWidget {
   const FirstScreenNavbar({super.key});
@@ -40,6 +45,8 @@ class FirstScreenNavbar extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            SizedBox(height: 20),
+            // Row(children: [TextField(),TextField()],),
             Material(
               color: Colors.red,
               animationDuration: Duration(seconds: 8),
@@ -50,27 +57,42 @@ class FirstScreenNavbar extends StatelessWidget {
 
               child: InkWell(
                 onTap: () {
-                  print("Tapped 1");
+                  dialogBox();
                 },
                 child: Container(
                   padding: EdgeInsets.all(16),
                   // color: Colors.blue,
-                  child: Text('Tap Me', style: TextStyle(color: Colors.white)),
+                  child: Text(
+                    'dialogBox',
+                    style: TextStyle(color: Colors.white),
+                  ),
                 ),
               ),
             ),
             SizedBox(height: 40),
             GestureDetector(
               onTap: () {
-                print("Tapped 2");
+                bottomSheetForDemo();
               },
               child: Container(
                 padding: EdgeInsets.all(16),
-                color: Colors.green,
-                child: Text('No Ripple Effect'),
+                decoration: BoxDecoration(
+                  color: Colors.green,
+                  boxShadow: [
+                    BoxShadow(
+                      offset: Offset(0, 3),
+                      color: Colors.green.shade200,
+                      blurRadius: 10,
+                      spreadRadius: 3,
+                    ),
+                  ],
+                  borderRadius: BorderRadius.circular(10),
+                ),
+
+                child: Text('show BottomSheet'),
               ),
             ),
-            SizedBox(height: 40),
+            SizedBox(height: 20),
             InkResponse(
               onTap: () {
                 print("Tapped");
@@ -81,13 +103,42 @@ class FirstScreenNavbar extends StatelessWidget {
                 child: Icon(Icons.touch_app),
               ),
             ),
-            SizedBox(height: 40),
-            ElevatedButton(onPressed: () {}, child: Text('Click')),
-            SizedBox(height: 40),
+            SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                snackBar();
+              },
+              child: Text('Show SnackBar'),
+            ),
+            SizedBox(height: 20),
+            Row(
+              children: [
+                ElevatedButton(
+                  onPressed: () {
+                    Get.toNamed(AppRoutes.demoOneScreen);
+                  },
+                  child: Text('Demo One Screen'),
+                ),
+                Spacer(),
+                ElevatedButton(
+                  onPressed: () {
+                    Get.toNamed(AppRoutes.checkSpacer);
+                  },
+                  child: Text('Check Spacer'),
+                ),
+              ],
+            ),
+            SizedBox(height: 20),
 
-            // Material(
-            //   child: InkWell(),
-            // )
+            Container(
+              margin: EdgeInsets.symmetric(horizontal: 10),
+              height: 80,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                color: Colors.grey.shade200,
+                borderRadius: BorderRadius.circular(15),
+              ),
+            ),
           ],
         ),
       ),
