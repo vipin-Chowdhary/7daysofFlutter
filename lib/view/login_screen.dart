@@ -14,23 +14,24 @@ class _LoginScreenState extends State<LoginScreen> {
   final formKey = GlobalKey<FormState>();
 
   moveToHome() async {
-   if(formKey.currentState!.validate()){
-     setState(() {
-       isChanged = true;
-     });
-     await Future.delayed(Duration(seconds: 1));
-     await Navigator.pushNamed(context, AppRoutes.homeScreen);
-     setState(() {
-       isChanged = false;
-     });
-   }
+    if (formKey.currentState!.validate()) {
+      setState(() {
+        isChanged = true;
+      });
+      await Future.delayed(Duration(seconds: 1));
+      await Navigator.pushNamed(context, AppRoutes.homeScreen);
+      setState(() {
+        isChanged = false;
+      });
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(onTap: () {
-      FocusScope.of(context).unfocus();
-    },
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).unfocus();
+      },
       child: Material(
         color: Colors.white,
         child: Form(
@@ -56,14 +57,17 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: Column(
                       children: [
                         TextFormField(
-                           textInputAction: TextInputAction.next,
+                          onTapOutside: (event) {
+                            FocusScope.of(context).unfocus();
+                          },
+                          textInputAction: TextInputAction.next,
                           onChanged: (value) {
                             setState(() {
                               name = value;
                             });
                           },
                           validator: (value) {
-                            if ( value == null ||value.isEmpty) {
+                            if (value == null || value.isEmpty) {
                               return "Username can not be empty";
                             }
                             return null;
@@ -74,10 +78,13 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         ),
                         TextFormField(
+                          onTapOutside: (event) {
+                            FocusScope.of(context).unfocus();
+                          },
                           validator: (value) {
-                            if ( value == null ||value.isEmpty) {
+                            if (value == null || value.isEmpty) {
                               return "Password can not be empty";
-                            } else if( value.length < 6){
+                            } else if (value.length < 6) {
                               return "Password length should be  atleast 6";
                             }
                             return null;
