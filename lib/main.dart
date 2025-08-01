@@ -6,12 +6,23 @@ import 'package:demo_project/utils/app_routes_constant.dart';
 import 'package:demo_project/view/nav_bar/navi_bar.dart';
 import 'package:demo_project/view/nav_bar/second_nav_bar.dart';
 import 'package:demo_project/view/second_screen.dart';
+import 'package:device_preview/device_preview.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import 'data/user_controller.dart';
+
 void main() {
-  runApp(MyApp());
+  Get.put(UserController());
+  runApp(
+    DevicePreview(
+      enabled: !kReleaseMode,
+      builder: (context) => MyApp(), // Wrap your app
+    ),
+      // MyApp()
+  );
 }
 
 class MyApp extends StatelessWidget {

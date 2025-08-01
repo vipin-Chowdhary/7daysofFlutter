@@ -6,4 +6,7 @@ class AppRoutes{
   static const demoNavBarBackButton = "/demo_navBar_backButton";
   static const demoOneScreen = "/demo_one_screen";
   static const checkSpacer = "/check_spacer";
+  static const getApi = "/get_api";
+  static const calenderScreen = "/calender";
+  static const imageScreen = "/image_screen";
 }

@@ -17,66 +17,68 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(centerTitle: true, title: Text("Home Screen")),
 
-      body: Column(
-        children: [
-          Card(
-            elevation: 4,
-            margin: EdgeInsets.symmetric(horizontal: 20, vertical: 30),
-            shadowColor: Colors.black,
-            surfaceTintColor: Colors.deepPurple,
-
-            child: ListTile(
-              leading: Image.network(dummyData.image),
-              title: Text(dummyData.name),
-              subtitle: Text(dummyData.desc),
-              trailing: Text(dummyData.price.toString()),
-            ),
-          ),
-          Container(
-            height: 200,
-            width: double.infinity,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: NetworkImage(dummyData.image),
-                fit: BoxFit.cover,
-                colorFilter: ColorFilter.mode(
-                  Colors.red.withOpacity(0.4),
-                  BlendMode.colorDodge,
-                ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Card(
+              elevation: 4,
+              margin: EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+              shadowColor: Colors.black,
+              surfaceTintColor: Colors.deepPurple,
+        
+              child: ListTile(
+                leading: Image.network(dummyData.image),
+                title: Text(dummyData.name),
+                subtitle: Text(dummyData.desc),
+                trailing: Text(dummyData.price.toString()),
               ),
             ),
-          ),
-          Container(
-            height: 300,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: NetworkImage(dummyData.image),
-                fit: BoxFit.cover,
-              ),
-            ),
-            child: ClipRRect(
-              child: BackdropFilter(
-                filter: ui.ImageFilter.blur(
-                  sigmaX: 5,
-                  sigmaY: 5,
-                ), // Blur intensity
-                child: Container(
-                  alignment: Alignment.center,
-                  height: 100,
-                  child: Text(
-                    'Hello, Blur!',
-                    style: TextStyle(color: Colors.white, fontSize: 30),
+            Container(
+              height: 200,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: NetworkImage(dummyData.image),
+                  fit: BoxFit.cover,
+                  colorFilter: ColorFilter.mode(
+                    Colors.red.withOpacity(0.4),
+                    BlendMode.colorDodge,
                   ),
                 ),
               ),
             ),
-          ),
-          SizedBox(height: 20),
-          ElevatedButton(onPressed: (){
-          // Get.to(SecondScreen());
-            Get.toNamed(AppRoutes.secondScreen);
-          }, child: Text("next"))
-        ],
+            Container(
+              height: 300,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: NetworkImage(dummyData.image),
+                  fit: BoxFit.cover,
+                ),
+              ),
+              child: ClipRRect(
+                child: BackdropFilter(
+                  filter: ui.ImageFilter.blur(
+                    sigmaX: 5,
+                    sigmaY: 5,
+                  ), // Blur intensity
+                  child: Container(
+                    alignment: Alignment.center,
+                    height: 100,
+                    child: Text(
+                      'Hello, Blur!',
+                      style: TextStyle(color: Colors.white, fontSize: 30),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(height: 20),
+            ElevatedButton(onPressed: (){
+            // Get.to(SecondScreen());
+              Get.toNamed(AppRoutes.secondScreen);
+            }, child: Text("next"))
+          ],
+        ),
       ),
       drawer: MyDrawer(),
     );

@@ -1,5 +1,9 @@
+import 'package:demo_project/models/login_model.dart';
 import 'package:demo_project/utils/app_routes_constant.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import '../data/user_controller.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -9,6 +13,9 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final UserController userController = Get.find();
   String name = "";
   bool isChanged = false;
   final formKey = GlobalKey<FormState>();
@@ -18,6 +25,7 @@ class _LoginScreenState extends State<LoginScreen> {
       setState(() {
         isChanged = true;
       });
+      userController.setLoginData(nameController.text, passwordController.text);
       await Future.delayed(Duration(seconds: 1));
       await Navigator.pushNamed(context, AppRoutes.homeScreen);
       setState(() {
@@ -26,8 +34,13 @@ class _LoginScreenState extends State<LoginScreen> {
     }
   }
 
+  // ************
+
   @override
   Widget build(BuildContext context) {
+
+
+
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
@@ -57,6 +70,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: Column(
                       children: [
                         TextFormField(
+                          controller: nameController,
                           onTapOutside: (event) {
                             FocusScope.of(context).unfocus();
                           },
@@ -81,6 +95,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           onTapOutside: (event) {
                             FocusScope.of(context).unfocus();
                           },
+                          controller: passwordController,
                           validator: (value) {
                             if (value == null || value.isEmpty) {
                               return "Password can not be empty";

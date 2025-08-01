@@ -1,6 +1,9 @@
 
 import 'package:demo_project/view/check_spacer.dart';
 import 'package:demo_project/view/demo_1.dart';
+import 'package:demo_project/view/nav_bar/home/calender_screen.dart';
+import 'package:demo_project/view/nav_bar/home/get_api_screen.dart';
+import 'package:demo_project/view/nav_bar/home/image.dart';
 import 'package:get/get.dart';
 
 import '../view/demo_nav_bar_back_button.dart';
@@ -45,5 +48,18 @@ List<GetPage<dynamic>> getPageRoute = [
     name: AppRoutes.checkSpacer,
     page: () => CheckSpacer(),
     transition: Transition.circularReveal,
+  ),
+  GetPage(
+    name: AppRoutes.getApi,
+    page: () => GetApiScreen(),
+
+  ),
+  GetPage(
+    name: AppRoutes.calenderScreen,
+    page: () => CalenderScreen(),
+  ),
+  GetPage(
+    name: AppRoutes.imageScreen,
+    page: () => ImageScreen(),
   ),
 ];

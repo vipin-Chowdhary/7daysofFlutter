@@ -17,6 +17,7 @@ class _CheckSpacerState extends State<CheckSpacer> {
   bool isLoading = false;
 
   Future<void> fetchData() async {
+    isLoading =true;
     final response = await http.get(
       Uri.parse("https://jsonplaceholder.typicode.com/posts"),
       headers: {"Content-Type": "application/json; charset=UTF-8"},
@@ -27,6 +28,7 @@ class _CheckSpacerState extends State<CheckSpacer> {
 
       setState(() {
         data.addAll(rawData.map((e) => Map<String, dynamic>.from(e)).toList());
+        isLoading =false;
       });
       print("Data fetched: ${data[1]}");
     } else {

@@ -1,12 +1,21 @@
+import 'package:demo_project/models/login_model.dart';
 import 'package:demo_project/utils/app_routes_constant.dart';
 import 'package:demo_project/view/demo_1.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../common_widgets/snackbar.dart';
+import '../../data/user_controller.dart';
 
-class FirstScreenNavbar extends StatelessWidget {
+class FirstScreenNavbar extends StatefulWidget {
   const FirstScreenNavbar({super.key});
+
+  @override
+  State<FirstScreenNavbar> createState() => _FirstScreenNavbarState();
+}
+
+class _FirstScreenNavbarState extends State<FirstScreenNavbar> {
+  final UserController userController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -70,6 +79,33 @@ class FirstScreenNavbar extends StatelessWidget {
               ),
             ),
             SizedBox(height: 40),
+            // *************
+            Row(
+              spacing: 10,
+              children: [
+                ElevatedButton(
+                  onPressed: () {
+                    Get.toNamed(AppRoutes.getApi);
+                    print("get screen api ");
+                  },
+                  child: Text('Get Api'),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    Get.toNamed(AppRoutes.calenderScreen);
+                  },
+                  child: Text('Calender'),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    Get.toNamed(AppRoutes.imageScreen);
+                  },
+                  child: Text('image'),
+                ),
+              ],
+            ),
+
+            SizedBox(height: 40),
             GestureDetector(
               onTap: () {
                 bottomSheetForDemo();
@@ -130,14 +166,17 @@ class FirstScreenNavbar extends StatelessWidget {
             ),
             SizedBox(height: 20),
 
-            Container(
-              margin: EdgeInsets.symmetric(horizontal: 10),
-              height: 80,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                color: Colors.grey.shade200,
-                borderRadius: BorderRadius.circular(15),
-              ),
+            Obx(() {
+              final data = userController.loginModel.value;
+              return  Card(
+                elevation: 4,margin: EdgeInsets.symmetric(horizontal: 16),
+                child: ListTile(
+                  title: Text(data.name ?? "no name"),
+                  subtitle: Text(data.password ?? "no password"),
+                ),
+              );
+            }
+
             ),
           ],
         ),
